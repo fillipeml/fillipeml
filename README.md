@@ -16,13 +16,14 @@ Before that: two years administering state-wide government databases and buildin
 ### Featured work
 | Project | What it is | Stack |
 |---|---|---|
+| [settlement-reminder-pipeline](https://github.com/fillipeml/settlement-reminder-pipeline) | Daily pipeline that registers court settlements from a lawyer's notice e-mail, reminds and collects the paying client on business days, settles installments from receipts read by an LLM and matched by amount, and escalates to a human. Idempotent in SQLite; never collects from someone who may have paid. In production at a law firm's controllership; 227 tests. | Python · Microsoft Graph · SQLite · Claude API |
 | [court-debt-calculator](https://github.com/fillipeml/court-debt-calculator) | Deterministic engine for updating court-ordered debts (monetary adjustment, interest timeline, deductions, fees, enforcement surcharges), validated to the cent against public court calculators, with an API, LLM parameter extraction for a lawyer to review and a review UI that prints a neutral PDF statement. Delivered to a litigation team; 185 tests over 14 reference cases. | Python · FastAPI · Next.js · Claude API |
 | [tax-settlement-analytics](https://github.com/fillipeml/tax-settlement-analytics) | Analytics on 1,134 public tax-settlement terms extracted with an LLM into a versioned dataset, plus a client-side simulator that checks a proposal against the law and against what the treasury has actually accepted. In production at a tax team. | Python · Next.js · Claude API (Files API, Batches) |
 | [court-deadline-triage](https://github.com/fillipeml/court-deadline-triage) | Daily triage of court gazette publications: a model classifies the deadline type, a deterministic engine computes the due date over versioned court calendars, a lawyer confirms. Pilot; 161 tests with hand-computed golden cases. | Python · Claude API · SQLite |
 | [court-notice-monitor](https://github.com/fillipeml/court-notice-monitor) | Read-only daily sweep of the electronic judicial domicile: lists, triages and alerts, and is built so it cannot acknowledge service. In production for a law firm. | Python · SQLite · Microsoft Graph |
 | [eu-job-pipeline](https://github.com/fillipeml/eu-job-pipeline) | Multi-source European job ingestion with rule-based and LLM fit scoring, a golden-set evaluation and an offline demo mode. | Python · Claude API · SQLite |
 
-Next up: a settlement-reminder pipeline in production (194 tests) and a full-stack case-diagnostics app.
+Next up: a full-stack case-diagnostics app.
 
 ### How I work
 - I run discovery with the people who will use the thing, then decide the architecture, then build it, then train them.
