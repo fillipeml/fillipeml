@@ -16,6 +16,7 @@ Before that: two years administering state-wide government databases and buildin
 ### Featured work
 | Project | What it is | Stack |
 |---|---|---|
+| [legal-intake-triage](https://github.com/fillipeml/legal-intake-triage) | The front door of a law firm's practice areas: e-mail and form intake, deterministic filters and deduplication, one Claude call that prepares a decision package with the rules re-applied in code, a card a person approves in the demand's own thread, and only then the task, the record and the reply. Two closing paths, an adjustment-rate dashboard, an SLA matrix from the board's history. In production in two areas (originally on Power Automate); rebuilt as code with an offline demo; 49 tests. | Python · FastAPI · Microsoft Graph · Claude API |
 | [case-diagnostics](https://github.com/fillipeml/case-diagnostics) | Strategic diagnosis of a Brazilian civil case file in four blocks. Two model calls read the file (a prose map, then a structured diagnosis where every thesis quotes an anchor); deterministic grounding rules then verify each thesis against the file and discard, with the reason shown, what the file does not support. Delivered as a technical assessment for a litigation team; evaluation with planted hallucinations, 74 tests. | TypeScript · Next.js · Claude API |
 | [settlement-reminder-pipeline](https://github.com/fillipeml/settlement-reminder-pipeline) | Daily pipeline that registers court settlements from a lawyer's notice e-mail, reminds and collects the paying client on business days, settles installments from receipts read by an LLM and matched by amount, and escalates to a human. Idempotent in SQLite; never collects from someone who may have paid. In production at a law firm's controllership; 227 tests. | Python · Microsoft Graph · SQLite · Claude API |
 | [court-debt-calculator](https://github.com/fillipeml/court-debt-calculator) | Deterministic engine for updating court-ordered debts (monetary adjustment, interest timeline, deductions, fees, enforcement surcharges), validated to the cent against public court calculators, with an API, LLM parameter extraction for a lawyer to review and a review UI that prints a neutral PDF statement. Delivered to a litigation team; 185 tests over 14 reference cases. | Python · FastAPI · Next.js · Claude API |
@@ -24,7 +25,7 @@ Before that: two years administering state-wide government databases and buildin
 | [court-notice-monitor](https://github.com/fillipeml/court-notice-monitor) | Read-only daily sweep of the electronic judicial domicile: lists, triages and alerts, and is built so it cannot acknowledge service. In production for a law firm. | Python · SQLite · Microsoft Graph |
 | [eu-job-pipeline](https://github.com/fillipeml/eu-job-pipeline) | Multi-source European job ingestion with rule-based and LLM fit scoring, a golden-set evaluation and an offline demo mode. | Python · Claude API · SQLite |
 
-Next up: the remaining repositories of the portfolio and live demos with screenshots for each README.
+Next up: a judgment-summary pipeline (Batches API, auditor as gatekeeper) and live demos with screenshots for each README.
 
 ### How I work
 - I run discovery with the people who will use the thing, then decide the architecture, then build it, then train them.
