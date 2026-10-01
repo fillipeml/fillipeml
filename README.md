@@ -28,6 +28,8 @@ Before that: two years administering state-wide government databases and buildin
 | [court-notice-monitor](https://github.com/fillipeml/court-notice-monitor) | Read-only daily sweep of the electronic judicial domicile: lists, triages and alerts, and is built so it cannot acknowledge service. In production for a law firm. | Python · SQLite · Microsoft Graph |
 | [eu-job-pipeline](https://github.com/fillipeml/eu-job-pipeline) | Multi-source European job ingestion with rule-based and LLM fit scoring, a golden-set evaluation and an offline demo mode. | Python · Claude API · SQLite |
 
+Three more systems are written up rather than published, in [**portfolio**](https://github.com/fillipeml/portfolio): a law-firm CRM whose tenancy is enforced by Postgres row-level security rather than by the application, a SaaS over a certificate-only federal API, and a legal-notice pipeline whose headline result is the 116 letters of 284 that it refused to sign. Each one says what is wrong with it as well as what is right, and explains why a sanitised repository would have been the worse artefact.
+
 Next up: live demos with screenshots for each README.
 
 ### How I work
