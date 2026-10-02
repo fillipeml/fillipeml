@@ -36,7 +36,7 @@ Next up: live demos with screenshots for each README.
 
 ### How I work
 - I run discovery with the people who will use the thing, then decide the architecture, then build it, then train them.
-- I make trade-offs explicit: moved a document pipeline from an agentic loop to the Batches API (about half the cost) and cut token spend by roughly 90 % with prompt caching; each README says what a decision cost.
+- I make trade-offs explicit: moved a document pipeline from an agentic loop to the Batches API, which bills at half price, and put the long identical prompts in cached blocks, where reads bill at a tenth; each README says what a decision cost, in dollars, from the usage the run reported.
 - Legal rules are code, not prompts: every deadline, discount cap and threshold is deterministic and has a hand-computed test.
 - I use AI coding tools daily and treat their output like a junior's pull request: reviewed, tested and validated against a schema before it ships. Every repository documents what was generated and what I changed.
 
