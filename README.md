@@ -30,9 +30,18 @@ Before that: two years administering state-wide government databases and buildin
 | [court-notice-monitor](https://github.com/fillipeml/court-notice-monitor) | Read-only daily sweep of the electronic judicial domicile: lists, triages and alerts, and is built so it cannot acknowledge service. In production for a law firm. | Python · SQLite · Microsoft Graph |
 | [eu-job-pipeline](https://github.com/fillipeml/eu-job-pipeline) | Multi-source European job ingestion with rule-based and LLM fit scoring, a golden-set evaluation and an offline demo mode. | Python · Claude API · SQLite |
 
+### Retrieval, fine-tuning and serving
+
+Two systems built to measure the parts of an AI stack my production work never had occasion to exercise. Both run on generated insurance corpora, because real claim documents belong to the people they happened to — and generating them is the better instrument anyway: the label is exact by construction, so the system can be scored on fields the document never mentioned, which is where these models actually fail.
+
+| Project | What it is | Stack |
+|---|---|---|
+| [claims-intake-rag](https://github.com/fillipeml/claims-intake-rag) | Questions about one insurance claim, answered from its scanned documents or refused. OCR measured end to end (CER 12.07% → 5.03% after re-segmentation), layout inferred from geometry at 82.7%, BM25 + dense + reciprocal rank fusion + cross-encoder reranking, with the ablation measured rather than assumed — and adding BM25 to a strong dense retriever made it significantly **worse**, which is the opposite of the usual advice. The better ranker turned out to be the worse gate. Served over Server-Sent Events, median time to first token 3.02 ms; non-root image, restricted Kubernetes manifests, and a CI job that starts the container and asks it a question. 86 tests. | Python · FastAPI · Qdrant · RapidOCR · sentence-transformers |
+| [qlora-serving-lab](https://github.com/fillipeml/qlora-serving-lab) | Portuguese claim notices into English records, five ways: regular expressions, zero-shot, few-shot, QLoRA, and QLoRA composed with deterministic arithmetic — 62.0% → 0.0% → 0.0% → 77.0% → **97.7%** of records exactly right. The fine-tuned 0.5B invents a value for **1 of 1,056** fields the message never mentioned; the same model unfine-tuned invents 91.4% of them. On wording no system had seen, the rule set falls to 0.0% and the model holds 81.6% per field. Also: on this card fp16 matrix multiply runs at **one eighth** of fp32, and `torch.cuda.is_bf16_supported()` answers True on hardware that has no bf16 at all. 107 tests. | Python · PyTorch · PEFT · bitsandbytes · Transformers |
+
 Three more systems are written up rather than published, in [**portfolio**](https://github.com/fillipeml/portfolio): a law-firm CRM whose tenancy is enforced by Postgres row-level security rather than by the application, a SaaS over a certificate-only federal API, and a legal-notice pipeline whose headline result is the 116 letters of 284 that it refused to sign. Each one says what is wrong with it as well as what is right, and explains why a sanitised repository would have been the worse artefact.
 
-Next up: live demos with screenshots for each README.
+Next up: a Brazilian-Portuguese speech pipeline, so a dictated notice becomes the same record; and live demos with screenshots for each README.
 
 ### How I work
 - I run discovery with the people who will use the thing, then decide the architecture, then build it, then train them.
